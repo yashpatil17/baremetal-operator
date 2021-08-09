@@ -2,7 +2,7 @@ package ironic
 
 import (
 	"fmt"
-	"reflect"
+	
 
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/nodes"
 
@@ -13,27 +13,16 @@ import (
 	"github.com/pkg/errors"
 )
 
-const (
-	noRAIDInterface       string = "no-raid"
-	softwareRAIDInterface string = "agent"
-)
+
 
 // setTargetRAIDCfg set the RAID settings to the ironic Node for RAID configuration steps
-func setTargetRAIDCfg(p *ironicProvisioner, raidInterface string, ironicNode *nodes.Node, data provisioner.PrepareData) (provisioner.Result, error) {
-	err := checkRAIDConfigure(raidInterface, data.TargetRAIDConfig)
-	if err != nil {
-		return operationFailed(err.Error())
-	}
-
+func setTargetRAIDCfg(p *ironicProvisioner, ironicNode *nodes.Node, data provisioner.PrepareData) (err error) {
 	var logicalDisks []nodes.LogicalDisk
 
 	// Build target for RAID configuration steps
-	logicalDisks, err = BuildTargetRAIDCfg(data.TargetRAIDConfig)
-	if err != nil {
-		return operationFailed(err.Error())
-	}
-	if len(logicalDisks) == 0 {
-		return provisioner.Result{}, nil
+	logicalDisks, err = BuildTargetRAIDCfg(data.RAIDConfig)
+	if len(logicalDisks) == 0 || err != nil {
+		return
 	}
 
 	// set root volume
@@ -45,15 +34,12 @@ func setTargetRAIDCfg(p *ironicProvisioner, raidInterface string, ironicNode *no
 	}
 
 	// Set target for RAID configuration steps
-	err = nodes.SetRAIDConfig(
+	return nodes.SetRAIDConfig(
 		p.client,
 		ironicNode.UUID,
 		nodes.RAIDConfigOpts{LogicalDisks: logicalDisks},
 	).ExtractErr()
-	if err != nil {
-		return transientError(err)
-	}
-	return provisioner.Result{}, nil
+	
 }
 
 // BuildTargetRAIDCfg build RAID logical disks, this method doesn't set the root volume
@@ -156,116 +142,37 @@ func buildTargetSoftwareRAIDCfg(volumes []metal3v1alpha1.SoftwareRAIDVolume) (lo
 }
 
 // BuildRAIDCleanSteps build the clean steps for RAID configuration from BaremetalHost spec
-func BuildRAIDCleanSteps(raidInterface string, target *metal3v1alpha1.RAIDConfig, actual *metal3v1alpha1.RAIDConfig) (cleanSteps []nodes.CleanStep, err error) {
-	err = checkRAIDConfigure(raidInterface, target)
-	if err != nil {
-		return nil, err
-	}
-
-	// No RAID
-	if raidInterface == noRAIDInterface {
-		return
-	}
-
-	// Software RAID
-	if raidInterface == softwareRAIDInterface {
-		// Ignore HardwareRAIDVolumes
-		if target != nil {
-			target.HardwareRAIDVolumes = nil
-		}
-		if actual != nil {
-			actual.HardwareRAIDVolumes = nil
-		}
-		if reflect.DeepEqual(target, actual) {
-			return
-		}
-
-		cleanSteps = append(
-			cleanSteps,
-			[]nodes.CleanStep{
-				{
-					Interface: "raid",
-					Step:      "delete_configuration",
-				},
-				{
-					Interface: "deploy",
-					Step:      "erase_devices_metadata",
-				},
-			}...,
-		)
-
-		// If software raid configuration is empty, only need to clear old configuration
-		if target == nil || len(target.SoftwareRAIDVolumes) == 0 {
-			return
-		}
-
-		cleanSteps = append(
-			cleanSteps,
-			nodes.CleanStep{
-				Interface: "raid",
-				Step:      "create_configuration",
-			},
-		)
-		return
-	}
-
-	// Hardware RAID
-	// If hardware RAID configuration is nil,
-	// keep old hardware RAID configuration
-	if target == nil || target.HardwareRAIDVolumes == nil {
-		return
-	}
-
-	// Ignore SoftwareRAIDVolumes
-	target.SoftwareRAIDVolumes = nil
-	if actual != nil {
-		actual.SoftwareRAIDVolumes = nil
-	}
-	if reflect.DeepEqual(target, actual) {
-		return
-	}
-
+func BuildRAIDCleanSteps(raid *metal3v1alpha1.RAIDConfig) (cleanSteps []nodes.CleanStep) {
 	// Add ‘delete_configuration’ before ‘create_configuration’ to make sure
 	// that only the desired logical disks exist in the system after manual cleaning.
 	cleanSteps = append(
-		cleanSteps,
-		nodes.CleanStep{
-			Interface: "raid",
+
 			Step:      "delete_configuration",
 		},
 	)
-
-	// If hardware raid configuration is empty, only need to clear old configuration
-	if len(target.HardwareRAIDVolumes) == 0 {
+	// If not configure raid, only need to clear old configuration
+	if raid == nil || (len(raid.HardwareRAIDVolumes) == 0 && len(raid.SoftwareRAIDVolumes) == 0) {
 		return
 	}
-
-	// ‘create_configuration’ doesn’t remove existing disks. It is recommended
-	// that only the desired logical disks exist in the system after manual cleaning.
+	if len(raid.HardwareRAIDVolumes) == 0 && len(raid.SoftwareRAIDVolumes) != 0 {
+		cleanSteps = append(
+			cleanSteps,
+			nodes.CleanStep{
+				Interface: "deploy",
+				Step:      "erase_devices_metadata",
+			},
+		)
+	}
 	cleanSteps = append(
-		cleanSteps,
-		nodes.CleanStep{
-			Interface: "raid",
-			Step:      "create_configuration",
-		},
+
 	)
 	return
 }
 
-func checkRAIDConfigure(raidInterface string, raid *metal3v1alpha1.RAIDConfig) error {
-	switch raidInterface {
-	case noRAIDInterface:
-		if raid != nil && (len(raid.HardwareRAIDVolumes) != 0 || len(raid.SoftwareRAIDVolumes) != 0) {
-			return fmt.Errorf("raid settings are defined, but the node's driver %s does not support RAID", raidInterface)
-		}
-	case softwareRAIDInterface:
-		if raid != nil && len(raid.HardwareRAIDVolumes) != 0 {
-			return fmt.Errorf("node's driver %s does not support hardware RAID", raidInterface)
-		}
-	default:
-		if raid != nil && len(raid.HardwareRAIDVolumes) == 0 && len(raid.SoftwareRAIDVolumes) != 0 {
-			return fmt.Errorf("node's driver %s does not support software RAID", raidInterface)
-		}
-	}
-	return nil
-}
+		
+	
+	
+	
+	
+
+
