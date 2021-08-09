@@ -1150,6 +1150,9 @@ func saveHostProvisioningSettings(host *metal3v1alpha1.BareMetalHost) (dirty boo
 					dirty = true
 				}
 			}
+		}
+	}
+
 	
 	
 	
