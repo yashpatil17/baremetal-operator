@@ -775,18 +775,13 @@ func (r *BareMetalHostReconciler) actionPreparing(prov provisioner.Provisioner, 
 	}
 
 	prepareData := provisioner.PrepareData{
-		TargetRAIDConfig: newStatus.Provisioning.RAID.DeepCopy(),
-		ActualRAIDConfig: info.host.Status.Provisioning.RAID.DeepCopy(),
-		RootDeviceHints:  newStatus.Provisioning.RootDeviceHints.DeepCopy(),
-		FirmwareConfig:   newStatus.Provisioning.Firmware.DeepCopy(),
+		RAIDConfig:      newStatus.Provisioning.RAID.DeepCopy(),
+		RootDeviceHints: newStatus.Provisioning.RootDeviceHints.DeepCopy(),
+		FirmwareConfig:  newStatus.Provisioning.Firmware.DeepCopy(),
 	}
-	// When manual cleaning fails, we think that the existed RAID configuration
-	// is invalid and needs to be reconfigured.
-	if info.host.Status.ErrorType == metal3v1alpha1.PreparationError {
-		prepareData.ActualRAIDConfig = nil
-		dirty = true
-	}
-	provResult, started, err := prov.Prepare(prepareData, dirty)
+	
+	provResult, started, err := prov.Prepare(prepareData,
+		dirty || info.host.Status.ErrorType == metal3v1alpha1.PreparationError)
 	if err != nil {
 		return actionError{errors.Wrap(err, "error preparing host")}
 	}
@@ -896,10 +891,8 @@ func (r *BareMetalHostReconciler) actionProvisioning(prov provisioner.Provisione
 // fields of a host.
 func clearHostProvisioningSettings(host *metal3v1alpha1.BareMetalHost) {
 	host.Status.Provisioning.RootDeviceHints = nil
-	// Keep `HardwareRAIDVolumes` to avoid configuring the same hardware RAID repeatedly
-	if host.Status.Provisioning.RAID != nil {
-		host.Status.Provisioning.RAID.SoftwareRAIDVolumes = nil
-	}
+	host.Status.Provisioning.RAID = nil
+	
 	host.Status.Provisioning.Firmware = nil
 }
 
@@ -1123,30 +1116,47 @@ func saveHostProvisioningSettings(host *metal3v1alpha1.BareMetalHost) (dirty boo
 		dirty = true
 	}
 
-	// Copy RAID settings
-	specRAID := host.Spec.RAID
-	// If RAID configure is nil or empty, means that we need to keep the current hardware RAID configuration
-	// or clear current software RAID configuration
-	if specRAID == nil || reflect.DeepEqual(specRAID, &metal3v1alpha1.RAIDConfig{}) {
-		// Set the default value of RAID configure:
-		// {
-		//     HardwareRAIDVolumes: nil or Status.Provisioning.RAID.HardwareRAIDVolumes(not empty),
-		//     SoftwareRAIDVolume: [],
-		// }
-		specRAID = &metal3v1alpha1.RAIDConfig{}
-		if host.Status.Provisioning.RAID != nil && len(host.Status.Provisioning.RAID.HardwareRAIDVolumes) != 0 {
-			specRAID.HardwareRAIDVolumes = host.Status.Provisioning.RAID.HardwareRAIDVolumes
-		}
-		specRAID.SoftwareRAIDVolumes = []metal3v1alpha1.SoftwareRAIDVolume{}
-	}
-	if !reflect.DeepEqual(host.Status.Provisioning.RAID, specRAID) {
-		host.Status.Provisioning.RAID = specRAID
-		dirty = true
-	}
+	if host.Spec.RAID != host.Status.Provisioning.RAID {
+		// If RAID settings is nil, remove saved settings,
+		// else check hardware RAID and software RAID.
+		if host.Spec.RAID == nil {
+			host.Status.Provisioning.RAID = nil
+			dirty = true
+		} else {
+			if host.Status.Provisioning.RAID == nil {
+				host.Status.Provisioning.RAID = &metal3v1alpha1.RAIDConfig{}
+				dirty = true
+			}
+			// If HardwareRAIDVolumes isn't nil, we will ignore SoftwareRAIDVolumes.
+			if len(host.Spec.RAID.HardwareRAIDVolumes) != 0 {
+				// If software RAID has been saved, remove it.
+				if len(host.Status.Provisioning.RAID.SoftwareRAIDVolumes) != 0 {
+					host.Status.Provisioning.RAID.SoftwareRAIDVolumes = nil
+				}
+				// Compare hardware RAID settings
+				if !reflect.DeepEqual(host.Spec.RAID.HardwareRAIDVolumes, host.Status.Provisioning.RAID.HardwareRAIDVolumes) {
+					host.Status.Provisioning.RAID.HardwareRAIDVolumes = host.Spec.RAID.HardwareRAIDVolumes
+					dirty = true
+				}
+			} else {
+				// If hardware RAID has been saved, remove it.
+				if len(host.Status.Provisioning.RAID.HardwareRAIDVolumes) != 0 {
+					host.Status.Provisioning.RAID.HardwareRAIDVolumes = nil
+					dirty = true
+				}
+				// Compare software RAID settings
+				if !reflect.DeepEqual(host.Spec.RAID.SoftwareRAIDVolumes, host.Status.Provisioning.RAID.SoftwareRAIDVolumes) {
+					host.Status.Provisioning.RAID.SoftwareRAIDVolumes = host.Spec.RAID.SoftwareRAIDVolumes
+					dirty = true
+				}
+			}
+	
+	
+	
 
 	// Copy BIOS settings
 	if !reflect.DeepEqual(host.Status.Provisioning.Firmware, host.Spec.Firmware) {
-		host.Status.Provisioning.Firmware = host.Spec.Firmware
+		host.Status.Provisioning.Firmware = host.Spec.Firmware.DeepCopy()
 		dirty = true
 	}
 
