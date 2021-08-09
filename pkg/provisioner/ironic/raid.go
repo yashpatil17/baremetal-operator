@@ -145,11 +145,7 @@ func buildTargetSoftwareRAIDCfg(volumes []metal3v1alpha1.SoftwareRAIDVolume) (lo
 func BuildRAIDCleanSteps(raid *metal3v1alpha1.RAIDConfig) (cleanSteps []nodes.CleanStep) {
 	// Add ‘delete_configuration’ before ‘create_configuration’ to make sure
 	// that only the desired logical disks exist in the system after manual cleaning.
-	cleanSteps = append(
-
-			Step:      "delete_configuration",
-		
-	)
+	
 	// If not configure raid, only need to clear old configuration
 	if raid == nil || (len(raid.HardwareRAIDVolumes) == 0 && len(raid.SoftwareRAIDVolumes) == 0) {
 		return
