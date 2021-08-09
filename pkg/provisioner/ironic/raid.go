@@ -148,7 +148,7 @@ func BuildRAIDCleanSteps(raid *metal3v1alpha1.RAIDConfig) (cleanSteps []nodes.Cl
 	cleanSteps = append(
 
 			Step:      "delete_configuration",
-		},
+		
 	)
 	// If not configure raid, only need to clear old configuration
 	if raid == nil || (len(raid.HardwareRAIDVolumes) == 0 && len(raid.SoftwareRAIDVolumes) == 0) {
