@@ -7,12 +7,12 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetalintrospection/v1/introspection"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/metal3-io/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/metal3-io/baremetal-operator/pkg/bmc"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner/fixture"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner/ironic/clients"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner/ironic/testserver"
+	"github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/wcecs/baremetal-operator/pkg/bmc"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner/fixture"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/clients"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/testserver"
 )
 
 func TestEmpty(t *testing.T) {
