@@ -15,11 +15,11 @@ import (
 	"github.com/pkg/errors"
 	"sigs.k8s.io/yaml"
 
-	metal3v1alpha1 "github.com/metal3-io/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/metal3-io/baremetal-operator/pkg/bmc"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner/ironic/devicehints"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner/ironic/hardwaredetails"
+	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/wcecs/baremetal-operator/pkg/bmc"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/devicehints"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/hardwaredetails"
 )
 
 var (
