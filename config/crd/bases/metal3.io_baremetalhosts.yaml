@@ -272,9 +272,8 @@ spec:
                 description: RAID configuration for bare metal server
                 properties:
                   hardwareRAIDVolumes:
-                    description: The list of logical disks for hardware RAID, if rootDeviceHints
-                      isn't used, first volume is root volume. You can set the value
-                      of this field to `[]` to clear all the hardware RAID configurations.
+                    description: he list of logical disks for hardware RAID, if rootDeviceHints
+                      isn't used, first volume is root volume.
                     items:
                       description: HardwareRAIDVolume defines the desired configuration
                         of volume in hardware RAID
@@ -326,8 +325,7 @@ spec:
                       has to be a RAID-1, while the RAID level for the second one
                       can be 0, 1, or 1+0. As the first RAID device will be the deployment
                       device, enforcing a RAID-1 reduces the risk of ending up with
-                      a non-booting node in case of a disk failure. Software RAID
-                      will always be deleted.
+                      a non-booting node in case of a disk failure. 
                     items:
                       description: SoftwareRAIDVolume defines the desired configuration
                         of volume in software RAID
@@ -914,8 +912,7 @@ spec:
                           RAID-1, while the RAID level for the second one can be 0,
                           1, or 1+0. As the first RAID device will be the deployment
                           device, enforcing a RAID-1 reduces the risk of ending up
-                          with a non-booting node in case of a disk failure. Software
-                          RAID will always be deleted.
+                          with a non-booting node in case of a disk failure. 
                         items:
                           description: SoftwareRAIDVolume defines the desired configuration
                             of volume in software RAID
