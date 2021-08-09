@@ -984,6 +984,7 @@ func (p *ironicProvisioner) buildManualCleaningSteps(bmcAccess bmc.AccessDetails
 		cleanSteps = append(cleanSteps, BuildRAIDCleanSteps(data.RAIDConfig)...)
 	} else if data.RAIDConfig != nil {
 		return nil, fmt.Errorf("RAID settings are defined, but the node's driver %s does not support RAID", bmcAccess.Driver())
+	}
 
 	// Build bios clean steps
 	settings, err := bmcAccess.BuildBIOSSettings(data.FirmwareConfig)
