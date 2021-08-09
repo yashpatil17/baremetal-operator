@@ -4,15 +4,15 @@ import (
 	"testing"
 	"time"
 
-	metal3v1alpha1 "github.com/metal3-io/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/metal3-io/baremetal-operator/pkg/bmc"
+	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/wcecs/baremetal-operator/pkg/bmc"
 
 	"github.com/stretchr/testify/assert"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/metal3-io/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/metal3-io/baremetal-operator/pkg/hardware"
-	"github.com/metal3-io/baremetal-operator/pkg/provisioner"
+	"github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/wcecs/baremetal-operator/pkg/hardware"
+	"github.com/wcecs/baremetal-operator/pkg/provisioner"
 	promutil "github.com/prometheus/client_golang/prometheus/testutil"
 	corev1 "k8s.io/api/core/v1"
 	ctrl "sigs.k8s.io/controller-runtime"
