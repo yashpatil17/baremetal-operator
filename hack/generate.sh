@@ -12,7 +12,7 @@ CONTAINER_RUNTIME="${CONTAINER_RUNTIME:-podman}"
 
 if [ "${IS_CONTAINER}" != "false" ]; then
   eval "$(go env)"
-  cd "${GOPATH}"/src/github.com/metal3-io/baremetal-operator
+  cd "${GOPATH}"/src/github.com/wcecs/baremetal-operator
   export XDG_CACHE_HOME="/tmp/.cache"
 
   INPUT_FILES="$(git ls-files config) $(git ls-files | grep zz_generated)"
@@ -31,7 +31,7 @@ else
     --env IRONIC_INSPECTOR_ENDPOINT=http://localhost:5050/v1/ \
     --volume "${PWD}:/go/src/github.com/metal3-io/baremetal-operator:rw,z" \
     --entrypoint sh \
-    --workdir /go/src/github.com/metal3-io/baremetal-operator \
+    --workdir /go/src/github.com/wcecs/baremetal-operator \
     registry.hub.docker.com/library/golang:1.16 \
-    /go/src/github.com/metal3-io/baremetal-operator/hack/generate.sh "${@}"
+    /go/src/github.com/wcecs/baremetal-operator/hack/generate.sh "${@}"
 fi;
