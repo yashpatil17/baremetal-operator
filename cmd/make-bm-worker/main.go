@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/metal3-io/baremetal-operator/cmd/make-bm-worker/templates"
+	"github.com/wcecs/baremetal-operator/cmd/make-bm-worker/templates"
 )
 
 func main() {
