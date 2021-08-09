@@ -1017,6 +1017,7 @@ func (p *ironicProvisioner) startManualCleaning(bmcAccess bmc.AccessDetails, iro
 			result, err = transientError(err)
 			return
 		}
+	}
 
 	// Build manual clean steps
 	cleanSteps, err := p.buildManualCleaningSteps(bmcAccess, data)
