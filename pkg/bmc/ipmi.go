@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	metal3v1alpha1 "github.com/metal3-io/baremetal-operator/apis/metal3.io/v1alpha1"
+	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
 )
 
 func init() {
