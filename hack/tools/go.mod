@@ -1,4 +1,4 @@
-module github.com/metal3-io/baremetal-operator/tooling
+module github.com/wcecs/baremetal-operator/tooling
 
 go 1.16
 
