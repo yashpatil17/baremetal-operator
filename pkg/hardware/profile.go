@@ -39,7 +39,7 @@ func init() {
 		RootDeviceHints: metal3v1alpha1.RootDeviceHints{
 			DeviceName: "/dev/vda",
 		},
-		RootGB:  3,
+		RootGB:  4,
 		LocalGB: 12,
 		CPUArch: "x86_64",
 	}
