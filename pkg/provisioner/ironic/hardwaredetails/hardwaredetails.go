@@ -8,7 +8,7 @@ import (
 
 	"github.com/gophercloud/gophercloud/openstack/baremetalintrospection/v1/introspection"
 
-	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
+	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
 )
 
 // GetHardwareDetails converts Ironic introspection data into BareMetalHost HardwareDetails.
