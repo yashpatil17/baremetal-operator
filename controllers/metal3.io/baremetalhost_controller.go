@@ -40,11 +40,11 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/wcecs/baremetal-operator/pkg/bmc"
-	"github.com/wcecs/baremetal-operator/pkg/hardware"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner"
-	"github.com/wcecs/baremetal-operator/pkg/utils"
+	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/shweta50/baremetal-operator/pkg/bmc"
+	"github.com/shweta50/baremetal-operator/pkg/hardware"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner"
+	"github.com/shweta50/baremetal-operator/pkg/utils"
 )
 
 const (
