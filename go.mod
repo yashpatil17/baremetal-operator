@@ -1,11 +1,11 @@
-module github.com/wcecs/baremetal-operator
+module github.com/shweta50/baremetal-operator
 
 go 1.16
 
 require (
 	github.com/go-logr/logr v0.4.0
 	github.com/gophercloud/gophercloud v0.16.0
-	github.com/wcecs/baremetal-operator/apis v0.0.0
+	github.com/shweta50/baremetal-operator/apis v0.0.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.0
 	github.com/stretchr/testify v1.7.0
@@ -18,4 +18,4 @@ require (
 	sigs.k8s.io/yaml v1.2.0
 )
 
-replace github.com/wcecs/baremetal-operator/apis => ./apis
+replace github.com/shweta50/baremetal-operator/apis => ./apis
