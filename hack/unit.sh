@@ -20,8 +20,8 @@ else
   "${CONTAINER_RUNTIME}" run --rm \
     --env IS_CONTAINER=TRUE \
     --env TEST_FLAGS="${TEST_FLAGS}" \
-    --env DEPLOY_KERNEL_URL=http://172.22.0.1/images/ironic-python-agent.kernel \
-    --env DEPLOY_RAMDISK_URL=http://172.22.0.1/images/ironic-python-agent.initramfs \
+    --env DEPLOY_KERNEL_URL=http://${CLUSTER_URL_HOST}/images/ironic-python-agent.kernel \
+    --env DEPLOY_RAMDISK_URL=http://${CLUSTER_URL_HOST}/images/ironic-python-agent.initramfs \
     --env IRONIC_ENDPOINT=http://localhost:6385/v1/ \
     --env IRONIC_INSPECTOR_ENDPOINT=http://localhost:5050/v1/ \
     --volume "${PWD}:/go/src/github.com/shweta50/baremetal-operator:rw,z" \
