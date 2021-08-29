@@ -31,8 +31,8 @@ export LDFLAGS="-X $(VERSION_URI).Raw=${BUILD_VERSION} \
 # Set some variables the operator expects to have in order to work
 # Those need to be the same as in config/default/ironic.env
 export OPERATOR_NAME=baremetal-operator
-export DEPLOY_KERNEL_URL=http://172.22.0.1:6180/images/ironic-python-agent.kernel
-export DEPLOY_RAMDISK_URL=http://172.22.0.1:6180/images/ironic-python-agent.initramfs
+export DEPLOY_KERNEL_URL=http://${CLUSTER_URL_HOST}:6180/images/ironic-python-agent.kernel
+export DEPLOY_RAMDISK_URL=http://${CLUSTER_URL_HOST}:6180/images/ironic-python-agent.initramfs
 export IRONIC_ENDPOINT=http://localhost:6385/v1/
 export IRONIC_INSPECTOR_ENDPOINT=http://localhost:5050/v1/
 export GO111MODULE=on
