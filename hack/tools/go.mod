@@ -1,4 +1,4 @@
-module github.com/wcecs/baremetal-operator/tooling
+module github.com/shweta50/baremetal-operator/tooling
 
 go 1.16
 
