@@ -8,11 +8,11 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/ports"
 	"github.com/stretchr/testify/assert"
 
-	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/wcecs/baremetal-operator/pkg/bmc"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/clients"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/testserver"
+	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/shweta50/baremetal-operator/pkg/bmc"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/clients"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/testserver"
 )
 
 func TestValidateManagementAccessNoMAC(t *testing.T) {
