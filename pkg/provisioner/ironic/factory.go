@@ -11,8 +11,8 @@ import (
 	"github.com/gophercloud/gophercloud"
 	logz "sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/wcecs/baremetal-operator/pkg/provisioner"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/clients"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/clients"
 )
 
 type ironicProvisionerFactory struct {
