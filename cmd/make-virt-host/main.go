@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	instanceImageSource      = "http://172.22.0.1/images/rhcos-ootpa-latest.qcow2"
+	instanceImageSource      = "http://${CLUSTER_URL_HOST}/images/rhcos-ootpa-latest.qcow2"
 	instanceImageChecksumURL = instanceImageSource + ".md5sum"
 )
 
