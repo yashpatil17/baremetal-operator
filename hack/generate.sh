@@ -12,7 +12,7 @@ CONTAINER_RUNTIME="${CONTAINER_RUNTIME:-podman}"
 
 if [ "${IS_CONTAINER}" != "false" ]; then
   eval "$(go env)"
-  cd "${GOPATH}"/src/github.com/wcecs/baremetal-operator
+  cd "${GOPATH}"/src/github.com/shweta50/baremetal-operator
   export XDG_CACHE_HOME="/tmp/.cache"
 
   INPUT_FILES="$(git ls-files config) $(git ls-files | grep zz_generated)"
@@ -29,9 +29,9 @@ else
     --env DEPLOY_RAMDISK_URL=http://172.22.0.1/images/ironic-python-agent.initramfs \
     --env IRONIC_ENDPOINT=http://localhost:6385/v1/ \
     --env IRONIC_INSPECTOR_ENDPOINT=http://localhost:5050/v1/ \
-    --volume "${PWD}:/go/src/github.com/wcecs/baremetal-operator:rw,z" \
+    --volume "${PWD}:/go/src/github.com/shweta50/baremetal-operator:rw,z" \
     --entrypoint sh \
-    --workdir /go/src/github.com/wcecs/baremetal-operator \
+    --workdir /go/src/github.com/shweta50/baremetal-operator \
     registry.hub.docker.com/library/golang:1.16 \
-    /go/src/github.com/wcecs/baremetal-operator/hack/generate.sh "${@}"
+    /go/src/github.com/shweta50/baremetal-operator/hack/generate.sh "${@}"
 fi;
