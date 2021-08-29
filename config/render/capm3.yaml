@@ -1525,7 +1525,7 @@ spec:
         envFrom:
         - configMapRef:
             name: baremetal-operator-ironic
-        image: quay.io/metal3-io/baremetal-operator
+        image: quay.io/shweta50/bmo
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
