@@ -5,12 +5,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wcecs/baremetal-operator/pkg/bmc"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/clients"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner/ironic/testserver"
+	"github.com/shweta50/baremetal-operator/pkg/bmc"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/clients"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/testserver"
 
-	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
+	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
 
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/nodes"
 	"github.com/gophercloud/gophercloud/openstack/baremetalintrospection/v1/introspection"
