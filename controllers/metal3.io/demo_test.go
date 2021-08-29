@@ -10,8 +10,8 @@ import (
 	fakeclient "sigs.k8s.io/controller-runtime/pkg/client/fake"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	metal3v1alpha1 "github.com/wcecs/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/wcecs/baremetal-operator/pkg/provisioner/demo"
+	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/shweta50/baremetal-operator/pkg/provisioner/demo"
 )
 
 func newDemoReconciler(initObjs ...runtime.Object) *BareMetalHostReconciler {
