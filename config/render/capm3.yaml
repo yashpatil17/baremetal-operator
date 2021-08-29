@@ -1436,15 +1436,15 @@ subjects:
 ---
 apiVersion: v1
 data:
-  CACHEURL: http://172.22.0.1/images
-  DEPLOY_KERNEL_URL: http://172.22.0.2:6180/images/ironic-python-agent.kernel
-  DEPLOY_RAMDISK_URL: http://172.22.0.2:6180/images/ironic-python-agent.initramfs
-  DHCP_RANGE: 172.22.0.10,172.22.0.100
+  CACHEURL: http://${CLUSTER_URL_HOST}/images
+  DEPLOY_KERNEL_URL: http://${CLUSTER_URL_HOST}:6180/images/ironic-python-agent.kernel
+  DEPLOY_RAMDISK_URL: http://${CLUSTER_URL_HOST}:6180/images/ironic-python-agent.initramfs
+  DHCP_RANGE: ${CLUSTER_DHCP_RANGE}
   HTTP_PORT: "6180"
-  IRONIC_ENDPOINT: http://172.22.0.2:6385/v1/
+  IRONIC_ENDPOINT: http://${CLUSTER_URL_HOST}:6385/v1/
   IRONIC_FAST_TRACK: "true"
-  IRONIC_INSPECTOR_ENDPOINT: http://172.22.0.2:5050/v1/
-  PROVISIONING_INTERFACE: eth2
+  IRONIC_INSPECTOR_ENDPOINT: http://${CLUSTER_URL_HOST}:5050/v1/
+  PROVISIONING_INTERFACE: ens4
 kind: ConfigMap
 metadata:
   name: baremetal-operator-ironic
