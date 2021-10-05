@@ -8,12 +8,12 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetalintrospection/v1/introspection"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/fixture"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/clients"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/testserver"
+	"github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/fixture"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/clients"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/testserver"
 )
 
 func TestProvision(t *testing.T) {

@@ -3,8 +3,8 @@ package testbmc
 import (
 	"net/url"
 
-	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
+	metal3v1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
 )
 
 func init() {

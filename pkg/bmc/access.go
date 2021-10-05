@@ -8,7 +8,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
+	metal3v1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
 )
 
 // AccessDetailsFactory describes a callable that returns a new

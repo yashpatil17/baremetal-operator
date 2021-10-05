@@ -6,9 +6,9 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
-	"github.com/shweta50/baremetal-operator/pkg/hardware"
+	metal3v1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
+	"github.com/yashpatil17/baremetal-operator/pkg/hardware"
 )
 
 /*

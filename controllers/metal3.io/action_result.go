@@ -8,8 +8,8 @@ import (
 
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	metal3 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner"
+	metal3 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner"
 )
 
 // This is an upper limit for the ErrorCount, so that the max backoff

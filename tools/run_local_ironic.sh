@@ -4,8 +4,8 @@ set -ex
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
-IRONIC_IMAGE=${IRONIC_IMAGE:-"quay.io/shweta50/metalkube_ironic:master"}
-IRONIC_INSPECTOR_IMAGE=${IRONIC_INSPECTOR_IMAGE:-"quay.io/shweta50/metalkube_ironic"}
+IRONIC_IMAGE=${IRONIC_IMAGE:-"quay.io/shwetachavan/ironic-image:master"}
+IRONIC_INSPECTOR_IMAGE=${IRONIC_INSPECTOR_IMAGE:-"quay.io/shwetachavan/ironic-image"}
 IRONIC_KEEPALIVED_IMAGE=${IRONIC_KEEPALIVED_IMAGE:-"quay.io/metal3-io/keepalived"}
 IPA_DOWNLOADER_IMAGE=${IPA_DOWNLOADER_IMAGE:-"quay.io/metal3-io/ironic-ipa-downloader:master"}
 IPA_BASEURI=${IPA_BASEURI:-}
@@ -48,8 +48,8 @@ else
     export IRONIC_BASE_URL="http://${CLUSTER_PROVISIONING_IP}"
 fi
 
-DEPLOY_KERNEL_URL="${DEPLOY_KERNEL_URL:-"http://${CLUSTER_PROVISIONING_IP}:${HTTP_PORT}/images/ironic-python-agent.kernel"}"
-DEPLOY_RAMDISK_URL="${DEPLOY_RAMDISK_URL:-"http://${CLUSTER_PROVISIONING_IP}:${HTTP_PORT}/images/ironic-python-agent.initramfs"}"
+DEPLOY_KERNEL_URL="${DEPLOY_KERNEL_URL:-"https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.kernel"}"
+DEPLOY_RAMDISK_URL="${DEPLOY_RAMDISK_URL:-"https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.initramfs"}"
 DEPLOY_ISO_URL=${DEPLOY_ISO_URL:-}
 IRONIC_ENDPOINT="${IRONIC_ENDPOINT:-"${IRONIC_BASE_URL}:6385/v1/"}"
 IRONIC_INSPECTOR_ENDPOINT="${IRONIC_INSPECTOR_ENDPOINT:-"${IRONIC_BASE_URL}:5050/v1/"}"

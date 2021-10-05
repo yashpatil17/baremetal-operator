@@ -23,7 +23,7 @@ KUSTOMIZE ?= go run -modfile=hack/tools/go.mod sigs.k8s.io/kustomize/kustomize/v
 # See pkg/version.go for details
 SOURCE_GIT_COMMIT ?= $(shell git rev-parse --short HEAD)
 BUILD_VERSION ?= $(shell git describe --always --abbrev=40 --dirty)
-VERSION_URI = "github.com/shweta50/baremetal-operator/pkg/version"
+VERSION_URI = "github.com/yashpatil17/baremetal-operator/pkg/version"
 export LDFLAGS="-X $(VERSION_URI).Raw=${BUILD_VERSION} \
                 -X $(VERSION_URI).Commit=${SOURCE_GIT_COMMIT} \
                 -X $(VERSION_URI).BuildTime=$(shell date +%Y-%m-%dT%H:%M:%S%z)"
@@ -31,8 +31,8 @@ export LDFLAGS="-X $(VERSION_URI).Raw=${BUILD_VERSION} \
 # Set some variables the operator expects to have in order to work
 # Those need to be the same as in config/default/ironic.env
 export OPERATOR_NAME=baremetal-operator
-export DEPLOY_KERNEL_URL=http://${CLUSTER_URL_HOST}:6180/images/ironic-python-agent.kernel
-export DEPLOY_RAMDISK_URL=http://${CLUSTER_URL_HOST}:6180/images/ironic-python-agent.initramfs
+export DEPLOY_KERNEL_URL=https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.kernel
+export DEPLOY_RAMDISK_URL=https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.initramfs
 export IRONIC_ENDPOINT=http://localhost:6385/v1/
 export IRONIC_INSPECTOR_ENDPOINT=http://localhost:5050/v1/
 export GO111MODULE=on

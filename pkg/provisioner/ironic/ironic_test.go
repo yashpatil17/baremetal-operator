@@ -8,15 +8,15 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	logz "sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/clients"
+	metal3v1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/clients"
 
 	// We don't use this package directly here, but need it imported
 	// so it registers its test fixture with the other BMC access
 	// types.
-	_ "github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/testbmc"
+	_ "github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/testbmc"
 )
 
 func init() {

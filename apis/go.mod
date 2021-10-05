@@ -1,4 +1,4 @@
-module github.com/shweta50/baremetal-operator/apis
+module github.com/yashpatil17/baremetal-operator/apis
 
 go 1.16
 

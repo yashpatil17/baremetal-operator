@@ -1,5 +1,5 @@
 multigroup: true
-repo: github.com/shweta50/baremetal-operator
+repo: github.com/yashpatil17/baremetal-operator
 resources:
 - group: metal3.io
   kind: BareMetalHost

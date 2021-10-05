@@ -32,14 +32,14 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	metal3iov1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	controllers "github.com/shweta50/baremetal-operator/controllers/metal3.io"
-	metal3iocontroller "github.com/shweta50/baremetal-operator/controllers/metal3.io"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/demo"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/fixture"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic"
-	"github.com/shweta50/baremetal-operator/pkg/version"
+	metal3iov1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	controllers "github.com/yashpatil17/baremetal-operator/controllers/metal3.io"
+	metal3iocontroller "github.com/yashpatil17/baremetal-operator/controllers/metal3.io"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/demo"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/fixture"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic"
+	"github.com/yashpatil17/baremetal-operator/pkg/version"
 	// +kubebuilder:scaffold:imports
 )
 

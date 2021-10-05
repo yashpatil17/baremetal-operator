@@ -2,7 +2,7 @@
     "name": "metal3-bmo",
     "config": {
         "kustomize_config": false,
-        "image": "quay.io/shweta50/bmo",
+        "image": "quay.io/shwetachavan/baremetal-operator",
         "live_reload_deps": [
             "apis", "cmd", "pkg", "config", "controllers", "go.mod", "go.sum", "main.go"
         ]

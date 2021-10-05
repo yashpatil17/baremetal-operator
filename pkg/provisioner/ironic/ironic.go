@@ -15,11 +15,11 @@ import (
 	"github.com/pkg/errors"
 	"sigs.k8s.io/yaml"
 
-	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/devicehints"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/hardwaredetails"
+	metal3v1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/devicehints"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/hardwaredetails"
 )
 
 var (
@@ -1066,7 +1066,7 @@ func (p *ironicProvisioner) Prepare(data provisioner.PrepareData, unprepared boo
 				return
 			}
 			if len(cleanSteps) != 0 {
-				
+
 				result, err = p.changeNodeProvisionState(
 					ironicNode,
 					nodes.ProvisionStateOpts{Target: nodes.TargetManage},

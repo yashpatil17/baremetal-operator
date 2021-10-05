@@ -12,9 +12,9 @@ if [ "${IS_CONTAINER}" != "false" ]; then
 else
   "${CONTAINER_RUNTIME}" run --rm \
     --env IS_CONTAINER=TRUE \
-    --volume "${PWD}:/go/src/github.com/shweta50/baremetal-operator:ro,z" \
+    --volume "${PWD}:/go/src/github.com/yashpatil17/baremetal-operator:ro,z" \
     --entrypoint sh \
-    --workdir /go/src/github.com/shweta50/baremetal-operator \
+    --workdir /go/src/github.com/yashpatil17/baremetal-operator \
     registry.hub.docker.com/securego/gosec:latest \
-    /go/src/github.com/shweta50/baremetal-operator/hack/gosec.sh "${@}"
+    /go/src/github.com/yashpatil17/baremetal-operator/hack/gosec.sh "${@}"
 fi;

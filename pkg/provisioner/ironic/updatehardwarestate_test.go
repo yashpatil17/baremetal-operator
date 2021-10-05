@@ -7,9 +7,9 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/nodes"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/clients"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner/ironic/testserver"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/clients"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner/ironic/testserver"
 )
 
 func TestUpdateHardwareState(t *testing.T) {

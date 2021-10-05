@@ -22,7 +22,7 @@ spec:
         - /baremetal-operator
         args:
         - --enable-leader-election
-        image: quay.io/shweta50/bmo
+        image: quay.io/shwetachavan/baremetal-operator
         imagePullPolicy: Always
         env:
           - name: POD_NAME

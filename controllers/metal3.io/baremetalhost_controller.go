@@ -40,11 +40,11 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	metal3v1alpha1 "github.com/shweta50/baremetal-operator/apis/metal3.io/v1alpha1"
-	"github.com/shweta50/baremetal-operator/pkg/bmc"
-	"github.com/shweta50/baremetal-operator/pkg/hardware"
-	"github.com/shweta50/baremetal-operator/pkg/provisioner"
-	"github.com/shweta50/baremetal-operator/pkg/utils"
+	metal3v1alpha1 "github.com/yashpatil17/baremetal-operator/apis/metal3.io/v1alpha1"
+	"github.com/yashpatil17/baremetal-operator/pkg/bmc"
+	"github.com/yashpatil17/baremetal-operator/pkg/hardware"
+	"github.com/yashpatil17/baremetal-operator/pkg/provisioner"
+	"github.com/yashpatil17/baremetal-operator/pkg/utils"
 )
 
 const (
@@ -779,7 +779,7 @@ func (r *BareMetalHostReconciler) actionPreparing(prov provisioner.Provisioner, 
 		RootDeviceHints: newStatus.Provisioning.RootDeviceHints.DeepCopy(),
 		FirmwareConfig:  newStatus.Provisioning.Firmware.DeepCopy(),
 	}
-	
+
 	provResult, started, err := prov.Prepare(prepareData,
 		dirty || info.host.Status.ErrorType == metal3v1alpha1.PreparationError)
 	if err != nil {
@@ -892,7 +892,7 @@ func (r *BareMetalHostReconciler) actionProvisioning(prov provisioner.Provisione
 func clearHostProvisioningSettings(host *metal3v1alpha1.BareMetalHost) {
 	host.Status.Provisioning.RootDeviceHints = nil
 	host.Status.Provisioning.RAID = nil
-	
+
 	host.Status.Provisioning.Firmware = nil
 }
 
@@ -1152,10 +1152,6 @@ func saveHostProvisioningSettings(host *metal3v1alpha1.BareMetalHost) (dirty boo
 			}
 		}
 	}
-
-	
-	
-	
 
 	// Copy BIOS settings
 	if !reflect.DeepEqual(host.Status.Provisioning.Firmware, host.Spec.Firmware) {
