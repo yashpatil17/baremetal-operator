@@ -4,8 +4,8 @@ set -ex
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
-IRONIC_IMAGE=${IRONIC_IMAGE:-"quay.io/shwetachavan/ironic-image:master"}
-IRONIC_INSPECTOR_IMAGE=${IRONIC_INSPECTOR_IMAGE:-"quay.io/shwetachavan/ironic-image"}
+IRONIC_IMAGE=${IRONIC_IMAGE:-"quay.io/shwetachavan/ironic-image-1:master"}
+IRONIC_INSPECTOR_IMAGE=${IRONIC_INSPECTOR_IMAGE:-"quay.io/shwetachavan/ironic-image-1"}
 IRONIC_KEEPALIVED_IMAGE=${IRONIC_KEEPALIVED_IMAGE:-"quay.io/metal3-io/keepalived"}
 IPA_DOWNLOADER_IMAGE=${IPA_DOWNLOADER_IMAGE:-"quay.io/metal3-io/ironic-ipa-downloader:master"}
 IPA_BASEURI=${IPA_BASEURI:-}
