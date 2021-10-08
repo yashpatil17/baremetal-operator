@@ -48,8 +48,8 @@ else
     export IRONIC_BASE_URL="http://${CLUSTER_PROVISIONING_IP}"
 fi
 
-DEPLOY_KERNEL_URL="${DEPLOY_KERNEL_URL:-"https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.kernel"}"
-DEPLOY_RAMDISK_URL="${DEPLOY_RAMDISK_URL:-"https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.initramfs"}"
+DEPLOY_KERNEL_URL="${DEPLOY_KERNEL_URL:-"https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-stable-wallaby.kernel"}"
+DEPLOY_RAMDISK_URL="${DEPLOY_RAMDISK_URL:-"https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-stable-wallaby.initramfs"}"
 DEPLOY_ISO_URL=${DEPLOY_ISO_URL:-}
 IRONIC_ENDPOINT="${IRONIC_ENDPOINT:-"${IRONIC_BASE_URL}:6385/v1/"}"
 IRONIC_INSPECTOR_ENDPOINT="${IRONIC_INSPECTOR_ENDPOINT:-"${IRONIC_BASE_URL}:5050/v1/"}"

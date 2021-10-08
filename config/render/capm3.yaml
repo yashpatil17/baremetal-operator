@@ -1437,8 +1437,8 @@ subjects:
 apiVersion: v1
 data:
   CACHEURL: http://${CLUSTER_URL_HOST}/images
-  DEPLOY_KERNEL_URL: https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.kernel
-  DEPLOY_RAMDISK_URL: https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.initramfs
+  DEPLOY_KERNEL_URL: https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-stable-wallaby.kernel
+  DEPLOY_RAMDISK_URL: https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-stable-wallaby.initramfs
   DHCP_RANGE: ${CLUSTER_DHCP_RANGE}
   HTTP_PORT: "6180"
   IRONIC_ENDPOINT: http://${CLUSTER_URL_HOST}:6385/v1/

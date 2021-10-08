@@ -20,8 +20,8 @@ else
   "${CONTAINER_RUNTIME}" run --rm \
     --env IS_CONTAINER=TRUE \
     --env TEST_FLAGS="${TEST_FLAGS}" \
-    --env DEPLOY_KERNEL_URL=https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.kernel \
-    --env DEPLOY_RAMDISK_URL=https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-master.initramfs \
+    --env DEPLOY_KERNEL_URL=https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-stable-wallaby.kernel \
+    --env DEPLOY_RAMDISK_URL=https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/ipa-centos8-stable-wallaby.initramfs \
     --env IRONIC_ENDPOINT=http://localhost:6385/v1/ \
     --env IRONIC_INSPECTOR_ENDPOINT=http://localhost:5050/v1/ \
     --volume "${PWD}:/go/src/github.com/yashpatil17/baremetal-operator:rw,z" \
