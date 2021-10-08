@@ -19,7 +19,7 @@ spec:
       hostNetwork: true
       containers:
         - name: ironic-dnsmasq
-          image: 
+          image: quay.io/shwetachavan/ironic-image-1
           imagePullPolicy: Always
           securityContext:
              capabilities:
